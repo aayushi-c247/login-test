@@ -37,7 +37,7 @@ class Singup extends React.Component {
           <Col lg={5} md={5}>
             <Card>
               <Card.Body>
-                <h2>Singup</h2>
+                <h2 className={'text-center pb-3'}>Singup</h2>
                 {this.state.loading ? "...Loading" :
                   <>
                     <Formik
@@ -72,11 +72,13 @@ class Singup extends React.Component {
                             ) : null}
                           </Form.Group>
 
-                          <div className={'d-lfex pt-4'}>
-                            <Button variant="primary" type="submit">
+                          <div className={'d-flex align-items-center pt-4 flex-column'}>
+                            <Button variant="primary" type="submit" className={'w-100'}>
                               Submit
                             </Button>
-                            <Link to="/" className={"px-5 d-inline-block"}>Login</Link>
+                            <div className={'pt-3'}>
+                              Aleadry have account, <Link to="/" className={"px-1 d-inline-block"}>Login</Link>
+                            </div>
                           </div>
                         </Form>
                       )}

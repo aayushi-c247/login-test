@@ -12,6 +12,10 @@ const  loginLogic =  createLogic({
         userAUthTokenDetails:result.data.token
       }))
       localStorage.setItem('token',result.data.token)
+      Toast.fire({
+        title: result.data.message,
+        icon: 'success',
+      })
       done();
     }
     else{
@@ -33,6 +37,10 @@ const signupLogic = createLogic({
       dispatch(AllAction.successSingupUser({
         userDetails:result.data
       }))
+      Toast.fire({
+        title: result.data.message,
+        icon: 'success',
+      })
       done();
     }
     else{

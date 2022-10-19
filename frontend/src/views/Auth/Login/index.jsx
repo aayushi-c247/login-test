@@ -6,8 +6,6 @@ import { Button, Col, Container, Form, Row, Card, } from "react-bootstrap";
 import { LoginSchema } from "../../../utilities/Validation"
 import { AllAction } from '../../../redux/Action';
 
-import './style.module.scss'
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -44,7 +42,7 @@ class Login extends React.Component {
           <Col lg={5} md={5}>
             <Card>
               <Card.Body>
-                <h2>Login</h2>
+                <h2 className={'text-center pb-3'}>Login</h2>
                 <>
                     <Formik
                       initialValues={{email, password}}
@@ -87,11 +85,13 @@ class Login extends React.Component {
                               <p className='text-danger'>{errors.password}</p>
                             ) : null}
                           </Form.Group>
-                          <div className={'d-flex'}>
-                            <Button variant="primary" type="submit">
+                          <div className={'d-flex align-items-center pt-2 flex-column'}>
+                            <Button variant="primary" type="submit" className={'w-100'}>
                               Submit
                             </Button>
-                            <Link to="/signup" className={"px-5 d-inline-block"}>Signup</Link>
+                            <div className={'pt-4'}>
+                              Don't have account please, <Link to="/signup" className={"px-1 d-inline-block"}>Signup</Link>
+                            </div>
                           </div>
   
                         </Form>
