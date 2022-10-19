@@ -16,7 +16,7 @@ const signup = async (req, res) => {
         } = req;
         const user = await User.findOne({ where: { email } });
         if (user) {
-            return res.status(400).json({
+            return res.status(409).json({
                 message: message.EMAIL_ALREADY_EXIST,
             });
         }
@@ -44,7 +44,7 @@ const login = async (req, res) => {
         } = req;
         const user = await User.findOne({ where: { email } });
         if (!user) {
-            return res.status(404).json({
+            return res.status(401).json({
                 message: message.EMAIL_PASSWORD_NOT_MATCH,
             });
         }
