@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { Formik, Field } from 'formik';
 import { Button, Col, Container, Form, Row, Card, } from "react-bootstrap";
 import { LoginSchema } from "../../../utilities/Validation"
-import { AuthLogin } from '../../../services';
-import { useAuth } from "../../../hooks";
 import { AllAction } from '../../../redux/Action';
 
 import './style.module.scss'
@@ -22,45 +19,23 @@ class Login extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log('prevProps',prevProps);
-    console.log('this.props.loginState',this.props.loginState);
     if(prevProps.loginState.success!=this.props.loginState.success){
-      // console.log('Success in login')
-      // if (this.props.loginState.success) {
-      //   return <h1> Success</h1>
-      // }
       this.setState({
        status: true
-
       })
     }
-
-
   }
 
    handleSubmit = async (data) => {
-    console.log(data,"data")
     if(data){
       this.props.loginUser(data);
     }
 
-    // const result = await AuthLogin(data);
-
-    // if (result.status !== 200) {
-
-    //   const errorMessage = result.response.data.errors.email;
-
-    //   console.log(errorMessage, "errorMessage")
-
-    //   return;
-
-    // }
-
   }
 
   render(){
-    const {email, password,status} = this.state
-console.log('status in render',status);
+    const {email, password } = this.state;
+
     return(
    
       <Container>
@@ -74,7 +49,7 @@ console.log('status in render',status);
                     <Formik
                       initialValues={{email, password}}
                       validationSchema={LoginSchema}
-                      // handleSubmit
+                      handleSubmit
                       onSubmit={(values, actions) => {
                         this.handleSubmit(values)
                       }}

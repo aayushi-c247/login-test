@@ -2,9 +2,10 @@ import { createAction } from "redux-actions";
 
 export const defaultAction = createAction("default-action");
 
-export const updateUserPassword = createAction("update-user-password");
-export const successUpdateUserPassword = createAction("success-update-user-password");
-export const cancelUpdateUserPassword = createAction("cancel-update-user-password");
+
+export const singupUser = createAction("singup-user");
+export const successSingupUser = createAction("success-singup-user");
+export const cancelSingupUser = createAction("cancel-singup-user");
 
 export const loginUser = createAction("login-user");
 export const successloginUser = createAction("success-login-user");
@@ -15,7 +16,7 @@ export const  AllAction = {
     loginUser,
     successloginUser,
     cancelLoginUser,
-    updateUserPassword,
-    successUpdateUserPassword,
-    cancelUpdateUserPassword
+    singupUser,
+    successSingupUser,
+    cancelSingupUser
 }

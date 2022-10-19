@@ -1,5 +1,4 @@
 import React from "react";
-import { AuthProvider } from "../../hooks/useAuth";
 
 function Home() {
   return (

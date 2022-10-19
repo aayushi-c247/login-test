@@ -1,77 +1,53 @@
 import { createLogic } from 'redux-logic';
-import ApiHelper from "../../apiHelper";
 import { AllAction } from "../Action";
-import { AuthLogin } from "../../services"
+import { AuthLogin, AuthSignup } from "../../services"
+import { Toast } from '../../utilities';
 
-// const fetchUserProfileLogic = createLogic({
-//   type: AllAction.fetchUserProfile,
-//   async process({ action }, dispatch, done) {
-//   const result  =  await ApiHelper.get('/profile')
-//     if(result){
-//       console.log(result,"result for user fetch")
-//       dispatch(AllAction.successUserDetails({
-//         userDetails:result.data.details
-//       }))
-//       done()
-//     }
-//     else{
-//       dispatch(AllAction.cancelAuthUserProfile())
-//       done()
-//     }
-//   }
-  
-// });
-
-// const sendTokenAuth = createLogic({
-//   type: AllAction.fetchAuthUserProfile,
-//   async process({ action }, dispatch, done) {
-//     const result  =  await ApiHelper.post('/oauth', action.payload);
-//     if(result){
-//       console.log(result,"result for user fetch")
-//       dispatch(AllAction.successAuthUserProfile({
-//         userAUthTokenDetails:result.data.details
-//       }))
-//       done()
-//     }
-//     else{
-//       console.log(result)
-//       dispatch(AllAction.cancelUserDetails())
-//       done()
-//     }
-//   }
-// })
-
-const loginLogic = createLogic({
+const  loginLogic =  createLogic({
   type: AllAction.loginUser,
   async process({ action }, dispatch, done) {
-    //const { email = "", password = "" } = action.payload || {}
-    console.log(action.payload,"action.payload");
-    dispatch(AllAction.successloginUser({
-      userDetails:action.payload,
-      // success:action.payload.success
-    }))
-    // const result  = AuthLogin(action.payload)
-    // if(result){
-    //   dispatch(AllAction.successloginUser({
-    //     userAUthTokenDetails:result.data.details
-    //   }))
-
-    // }
-    // else{
-    //   console.log("error")
-    // }
+    const result  = await AuthLogin(action.payload)
+    if(result.data){
+      dispatch(AllAction.successloginUser({
+        userAUthTokenDetails:result.data.token
+      }))
+      localStorage.setItem('token',result.data.token)
+      done();
+    }
+    else{
+      Toast.fire({
+        title: result.response.data.message,
+        icon: 'error',
+      })
+      done();
+    }
   }
 })
 
-const updateUserPassword = createLogic({
-  type: AllAction.updateUserPassword,
+const signupLogic = createLogic({
+  type: AllAction.singupUser,
   async process({ action }, dispatch, done) {
-
+    console.log(action.payload,"action.payload");
+    const result  = await AuthSignup(action.payload)
+    if(result.data){
+      dispatch(AllAction.successSingupUser({
+        userDetails:result.data
+      }))
+      done();
+    }
+    else{
+      Toast.fire({
+        title: result.response.data.message,
+        icon: 'error',
+      })
+      done();
+    }
   }
 })
+
 
 export const allLogics = [
   loginLogic,
-  updateUserPassword
+  signupLogic
 ];
   
