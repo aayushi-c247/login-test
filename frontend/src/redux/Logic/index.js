@@ -8,7 +8,7 @@ const  loginLogic =  createLogic({
   async process({ action }, dispatch, done) {
     const result  = await AuthLogin(action.payload)
     if(result.data){
-      dispatch(AllAction.successloginUser({
+      dispatch(AllAction.successLoginUser({
         userAUthTokenDetails:result.data.token
       }))
       localStorage.setItem('token',result.data.token)
@@ -29,12 +29,12 @@ const  loginLogic =  createLogic({
 })
 
 const signupLogic = createLogic({
-  type: AllAction.singupUser,
+  type: AllAction.signUpUser,
   async process({ action }, dispatch, done) {
     console.log(action.payload,"action.payload");
     const result  = await AuthSignup(action.payload)
     if(result.data){
-      dispatch(AllAction.successSingupUser({
+      dispatch(AllAction.successSignupUser({
         userDetails:result.data
       }))
       Toast.fire({

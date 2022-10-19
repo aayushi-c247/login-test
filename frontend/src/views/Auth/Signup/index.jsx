@@ -3,16 +3,15 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Form, Button, Card, } from 'react-bootstrap';
 import { Formik, Field } from 'formik';
-import { SignupSchema, Toast } from "../../../utilities";
+import { AuthSchema } from "../../../utilities";
 import { AllAction } from '../../../redux';
-
 
 const initialValues = {
   email: '',
   password: '',
 }
 
-class Singup extends React.Component {
+class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,14 +21,12 @@ class Singup extends React.Component {
   }
 
   handleUserRegistration = async (data) => {
-    console.log(data, "values")
     if (data) {
-      this.props.singupUser(data);
+      this.props.signUpUser(data);
     }
   }
 
   render() {
-
 
     return (
       <Container>
@@ -37,12 +34,12 @@ class Singup extends React.Component {
           <Col lg={5} md={5}>
             <Card>
               <Card.Body>
-                <h2 className={'text-center pb-3'}>Singup</h2>
+                <h2 className={'text-center pb-3'}>SignUp</h2>
                 {this.state.loading ? "...Loading" :
                   <>
                     <Formik
                       initialValues={initialValues}
-                      validationSchema={SignupSchema}
+                      validationSchema={AuthSchema}
                       onSubmit={(values, isValidating) => {
                         this.handleUserRegistration(values)
                       }}
@@ -77,7 +74,7 @@ class Singup extends React.Component {
                               Submit
                             </Button>
                             <div className={'pt-3'}>
-                              Aleadry have account, <Link to="/" className={"px-1 d-inline-block"}>Login</Link>
+                              Already have account?, <Link to="/" className={"px-1 d-inline-block"}>Login</Link>
                             </div>
                           </div>
                         </Form>
@@ -98,16 +95,16 @@ class Singup extends React.Component {
 const mapStateToProps = (state) => {
   console.log('state in mapState', state);
   return {
-    singupState: state.appReducer,
+    signUpState: state.appReducer,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    singupUser: (userData) => {
-      dispatch(AllAction.singupUser(userData));
+    signUpUser: (userData) => {
+      dispatch(AllAction.signUpUser(userData));
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Singup);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -3,20 +3,20 @@ import { createAction } from "redux-actions";
 export const defaultAction = createAction("default-action");
 
 
-export const singupUser = createAction("singup-user");
-export const successSingupUser = createAction("success-singup-user");
-export const cancelSingupUser = createAction("cancel-singup-user");
+export const signUpUser = createAction("signup-user");
+export const successSignupUser = createAction("success-signup-user");
+export const cancelSignupUser = createAction("cancel-signup-user");
 
 export const loginUser = createAction("login-user");
-export const successloginUser = createAction("success-login-user");
+export const successLoginUser = createAction("success-login-user");
 export const cancelLoginUser = createAction("cancel-login-user");
 
 
 export const  AllAction = {
     loginUser,
-    successloginUser,
+    successLoginUser,
     cancelLoginUser,
-    singupUser,
-    successSingupUser,
-    cancelSingupUser
+    signUpUser,
+    successSignupUser,
+    cancelSignupUser
 }

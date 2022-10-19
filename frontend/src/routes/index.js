@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-const Home = lazy(() => import("../views/Home"));
 const Login = lazy(() => import("../views/Auth/Login"));
 const Signup = lazy(() => import("../views/Auth/Signup"));
 
@@ -9,11 +8,6 @@ function RenderRoutes() {
   return (
     <Suspense>
       <Routes>
-        <Route
-          path={"/home"}
-          exact={true}
-          element={<Home />}
-        />
         <Route
           path={"/"}
           exact={true}

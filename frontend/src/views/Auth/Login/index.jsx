@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { Formik, Field } from 'formik';
 import { Button, Col, Container, Form, Row, Card, } from "react-bootstrap";
-import { LoginSchema } from "../../../utilities/Validation"
+import { AuthSchema } from "../../../utilities/Validation"
 import { AllAction } from '../../../redux/Action';
 
 class Login extends React.Component {
@@ -46,7 +46,7 @@ class Login extends React.Component {
                 <>
                     <Formik
                       initialValues={{email, password}}
-                      validationSchema={LoginSchema}
+                      validationSchema={AuthSchema}
                       handleSubmit
                       onSubmit={(values, actions) => {
                         this.handleSubmit(values)
@@ -89,8 +89,8 @@ class Login extends React.Component {
                             <Button variant="primary" type="submit" className={'w-100'}>
                               Submit
                             </Button>
-                            <div className={'pt-4'}>
-                              Don't have account please, <Link to="/signup" className={"px-1 d-inline-block"}>Signup</Link>
+                            <div className={'pt-2'}>
+                              Don't have account please,<Link to="/signup" className={"px-5 d-inline-block"}>Signup</Link>
                             </div>
                           </div>
   
