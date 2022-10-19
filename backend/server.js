@@ -7,14 +7,11 @@ const router = require("./routes")
 const app = express()
 
 const corsOption = {
-    origin: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-    exposedHeaders: [
-        "x-auth-token",
-        "authorization",
-    ]
-};
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+  }
 
 app.use(cors(corsOption))
 app.use(express.json())
