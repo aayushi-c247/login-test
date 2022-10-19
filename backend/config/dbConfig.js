@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: process.env.HOST,
-    USER: "root",
-    PASSWORD: "",
-    DB: process.env.DB,
+    HOST: process.env.MYSQL_HOST_NAME,
+    USER: process.env.MYSQL_USER_NAME,
+    PASSWORD: process.env.MYSQL_PASSWORD,
+    DB: process.env.MYSQL_DB_NAME,
     dialect: "mysql",
     pool: {
         max: 5,
