@@ -11,40 +11,26 @@ const FormInput = ({
   label, 
   errors,
   field,
-  form
+  form,
+  ...props
 }) => {
-  const error = "form.error";
-  const touched = "form.error";
-
   return (
-    <Form.Group className="mb-3" controlId="formBasicEmail">
+    <Form.Group className="mb-3" controlId={id}>
       <Form.Label>{label}</Form.Label>
-      {/* <Field
-        type={type}
-        placeholder={placeholder}
-        name={name}
-        value={field.value || ""}
-        onChange={handleChange}
-        className={"form-control"}
-        id={id}
-      />
-      {error && touched ? (
-        <p className='text-danger'>{errors}</p>
-      ) : null} */}
       <Field name={name}>
         {({
-          field, // { name, value, onChange, onBlur }
-          form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+          field, 
+          form: { touched, errors },
           meta,
         }) => (
-          <div>
-            <input type="text" placeholder={placeholder} {...field} />
+          <>
+            <Form.Control type={type} placeholder={placeholder} {...field}  />
             {meta.touched && meta.error && (
-              <div className="error">{meta.error}</div>
+              <div className="text-danger">{meta.error}</div>
             )}
-          </div>
+          </>
         )}
-        </Field>
+        </Field> 
     </Form.Group>
   )
 }

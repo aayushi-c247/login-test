@@ -1,4 +1,4 @@
-import { Form as FormikProps, Formik } from "formik";
+import { Form as NativeForm, Formik } from "formik";
 import React from "react";
 
 /**
@@ -25,7 +25,12 @@ const Form = ({
       enableReinitialize
       {...props}
     >
-       {(FormikProps) => ({children})}
+    
+      <NativeForm  >
+        {children}
+      </NativeForm>
+      
+       {/* {(FormikProps) => ({children})} */}
     </Formik>
   );
 };

@@ -11,6 +11,7 @@ export const loginUser = createAction("login-user");
 export const successLoginUser = createAction("success-login-user");
 export const cancelLoginUser = createAction("cancel-login-user");
 
+export const redirectTo = createAction("REDIRET_TO");
 
 export const  AllAction = {
     loginUser,
@@ -18,5 +19,6 @@ export const  AllAction = {
     cancelLoginUser,
     signUpUser,
     successSignupUser,
-    cancelSignupUser
+    cancelSignupUser,
+    redirectTo
 }

@@ -1,7 +1,10 @@
 import { createLogic } from 'redux-logic';
+import { push } from "react-router-redux";
 import { AllAction } from "../Action";
 import { AuthLogin, AuthSignup } from "../../services"
 import { Toast } from '../../utilities';
+
+
 
 const  loginLogic =  createLogic({
   type: AllAction.loginUser,
@@ -31,12 +34,13 @@ const  loginLogic =  createLogic({
 const signupLogic = createLogic({
   type: AllAction.signUpUser,
   async process({ action }, dispatch, done) {
-    console.log(action.payload,"action.payload");
     const result  = await AuthSignup(action.payload)
     if(result.data){
+      
       dispatch(AllAction.successSignupUser({
-        userDetails:result.data
+        userDetails:result.data.data
       }))
+      dispatch(AllAction.redirectTo({ path: "/"}));
       Toast.fire({
         title: result.data.message,
         icon: 'success',
@@ -53,9 +57,19 @@ const signupLogic = createLogic({
   }
 })
 
+/* Logic action for redirecting to path of routes */
+export const redirectToLogic = createLogic({
+  type: "REDIRET_TO",
+  async process({ action }, dispatch, done) {
+    dispatch(push(action.payload.path));
+    done();
+  }
+});
+
 
 export const allLogics = [
   loginLogic,
-  signupLogic
+  signupLogic,
+  redirectToLogic
 ];
   

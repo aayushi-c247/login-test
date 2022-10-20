@@ -1,31 +1,29 @@
-import React, { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { lazy } from "react";
+import { Route, Switch, withRouter } from "react-router-dom";
 
 const Login = lazy(() => import("../views/Auth/Login"));
 const Signup = lazy(() => import("../views/Auth/Signup"));
 
 function RenderRoutes() {
   return (
-    <Suspense>
-      <Routes>
+    <Switch>
         <Route
           path={"/"}
           exact={true}
-          element={<Login />}
+          render={props => (<Login {...props}/>) }
         />
         <Route
           path={"/signup"}
           exact={true}
-          element={<Signup />}
+          render={props => (<Signup {...props}/>) }
         />
         <Route
           path={"*"}
           exact={true}
-          element={<div>No page Found</div>}
+          render={props => (<div {...props}>No page Found</div>) }
         />
-      </Routes>
-    </Suspense>
+    </Switch>
   )
 }
 
-export default RenderRoutes
+export default withRouter(RenderRoutes)
